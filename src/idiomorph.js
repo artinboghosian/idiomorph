@@ -19,6 +19,7 @@
         root.Idiomorph = root.Idiomorph || factory();
     }
 }(typeof self !== 'undefined' ? self : this,
+    // START FACTORY
     function () {
         'use strict';
 
@@ -865,5 +866,8 @@
             morph,
             defaults
         }
-    }));
+    }
+    // END FACTORY
+    )
+);
 

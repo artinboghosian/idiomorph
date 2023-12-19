@@ -19,7 +19,8 @@
   "unpkg": "dist/idiomorph.min.js",
   "scripts": {
     "test": "mocha-chrome test/index.html",
-    "dist": "cp -r src/* dist/ && cat src/idiomorph.js src/idiomorph-htmx.js > dist/idiomorph-ext.js && npm run-script uglify && gzip -9 -k -f dist/idiomorph.min.js > dist/idiomorph.min.js.gz && exit",
+    "esmify" : "{ echo \"let Idiomorph =(\" && awk \"/START FACTORY/{f=1;next} /END FACTORY/{f=0} f\" src/idiomorph.js && echo \")(); export {Idiomorph}\" } > dist/idiomorph.esm.js",
+    "dist": "npm run esmify && cp -r src/* dist/ && cat src/idiomorph.js src/idiomorph-htmx.js > dist/idiomorph-ext.js && npm run-script uglify && gzip -9 -k -f dist/idiomorph.min.js > dist/idiomorph.min.js.gz && exit",
     "uglify": "uglifyjs -m eval -o dist/idiomorph.min.js dist/idiomorph.js && uglifyjs -m eval -o dist/idiomorph-ext.min.js dist/idiomorph-ext.js"
   },
   "repository": {
